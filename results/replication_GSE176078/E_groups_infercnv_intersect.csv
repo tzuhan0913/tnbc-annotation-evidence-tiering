@@ -1,0 +1,7 @@
+sample,patient,condition,n_cells
+CID44971__non_malignant,CID44971,non_malignant,668
+CID44971__malignant,CID44971,malignant,871
+CID44991__non_malignant,CID44991,non_malignant,19
+CID44991__malignant,CID44991,malignant,3906
+CID4515__non_malignant,CID4515,non_malignant,32
+CID4515__malignant,CID4515,malignant,2076

@@ -1,0 +1,36 @@
+﻿Item,Cohort 1: GSE161529 (primary),Cohort 2: GSE176078 (replication)
+Tumours contributing epithelial cells,8,9 of 10 (CID3946 has none)
+Epithelial cells compared,"30,353","11,793"
+Label set 1,labels of the original analysis of this cohort,authors' published Cancer / Normal Epithelial labels
+Label set 2,our pre-specified inferCNV rule,our pre-specified inferCNV rule
+Largest per-patient disagreement,92 percentage points,20 percentage points
+Raw cell-level agreement,not comparable (different cell sets),99.67%
+Cohen's kappa,not comparable,0.974
+Balanced accuracy,not comparable,99.57%
+Cells unresolved by our rule,"873 of 30,353 (2.9%)","971 of 11,793 (8.2%)"
+--- each annotation chooses its own patients ---,,
+"Paired patients, label set 1",6,"4 (CID4465, CID44971, CID44991, CID4515)"
+"Paired patients, label set 2",6,"4 (CID44971, CID44991, CID4513, CID4515)"
+Smallest non-malignant group,6 cells,10 cells (CID4465)
+"Genes at patient-level FDR < 0.05, label set 1",not run genome-wide,680
+"Genes at patient-level FDR < 0.05, label set 2","4,241",52
+Ratio,--,13.1-fold
+Mitotic regulators significant,0/12 original; 12/12 harmonised,12/12 published; 3/12 ours
+--- restricted to the same 3 patients ---,,
+Genes at FDR < 0.05,not applicable,177 published vs 281 ours (1.6-fold)
+Mitotic regulators significant,not applicable,8/12 vs 10/12
+Genome-wide logFC correlation,not applicable,r = 0.989
+Discordant significance calls,not applicable,112 of 285 (39.3%)
+"  of those, same direction",not applicable,112 of 112 (100%)
+  median |delta logFC|,not applicable,0.12 (0.09 among concordant)
+"--- same 2 patients, >= 20 cells per group ---",,
+Genes at FDR < 0.05,not applicable,318 vs 314 (1.0-fold)
+Mitotic regulators significant,not applicable,8/12 vs 8/12
+--- results that do not depend on the annotation ---,,
+Immunoglobulin genes at patient-level FDR < 0.05,0/4,0/4 under every model
+"G2/M program, patients positive",6/6,"4/4, 3/3 and 2/2 under every model"
+G2/M camera P,5e-32,1e-24 to 8e-30 across all six models
+--- results that did not replicate ---,,
+Top cell-level genes detected in <1% of cells,76% (of the 174-gene list),9.5% and 8.0%
+Uncharacterised loci among top cell-level genes,33%,2.0% and 1.5%
+Direction of the immunoglobulin cell-level effect,lower in malignant cells,higher in malignant cells (IGKC log2FC +1.29)

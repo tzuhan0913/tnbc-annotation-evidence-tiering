@@ -1,0 +1,4 @@
+file: C:/Users/tzuha/Documents/投稿文章(JS)/data_external/dgidb/interactions.tsv
+downloaded/used: 2026-09-15 10:13:05
+rows: 98239
+columns: gene_claim_name, gene_concept_id, gene_name, interaction_source_db_name, interaction_source_db_version, interaction_type, interaction_score, drug_claim_name, drug_concept_id, drug_name, approved, immunotherapy, anti_neoplastic

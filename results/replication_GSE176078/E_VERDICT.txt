@@ -1,0 +1,5 @@
+GSE176078 follow-up
+run: 2026-09-16 09:36:37
+MINC: 10 | strict: 20
+intersection patients: CID44971, CID44991, CID4515
+VERDICT: PATIENT SET: on identical patients the gap largely closes (177 vs 281 genes, versus 680 vs 52 when each label set chooses its own patients). The annotation acts mainly by deciding which patients are comparable at all.

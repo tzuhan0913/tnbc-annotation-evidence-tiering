@@ -1,0 +1,17 @@
+patient_condition,n_cells,kept_for_pseudobulk
+CID3963__malignant,213,TRUE
+CID44041__malignant,3,FALSE
+CID44041__non_malignant,12,TRUE
+CID4465__malignant,124,TRUE
+CID4465__non_malignant,8,FALSE
+CID4495__malignant,1109,TRUE
+CID44971__malignant,871,TRUE
+CID44971__non_malignant,668,TRUE
+CID44991__malignant,3906,TRUE
+CID44991__non_malignant,19,TRUE
+CID4513__malignant,614,TRUE
+CID4513__non_malignant,30,TRUE
+CID4515__malignant,2076,TRUE
+CID4515__non_malignant,32,TRUE
+CID4523__malignant,1135,TRUE
+CID4523__non_malignant,2,FALSE

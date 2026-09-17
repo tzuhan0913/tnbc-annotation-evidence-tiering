@@ -1,0 +1,7 @@
+role,column
+patient_col,orig.ident
+celltype_col,celltype_major
+possible_state_or_annotation_col,subtype
+possible_state_or_annotation_col,celltype_subset
+possible_state_or_annotation_col,celltype_minor
+possible_state_or_annotation_col,celltype_major

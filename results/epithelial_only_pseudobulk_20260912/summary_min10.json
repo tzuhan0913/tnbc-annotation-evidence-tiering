@@ -1,0 +1,102 @@
+{
+ "MINC": 10,
+ "n_malignant_cells": 29085,
+ "n_nonmalignant_cells": 908,
+ "tier1_sig_abs05": 906,
+ "tier1_sig_abs1": 198,
+ "overlap_legacy174_with_new_abs1": 6,
+ "overlap_legacy869_with_new_abs05": 49,
+ "paired_patients": [
+  "TN_0106",
+  "TN_0114_T2",
+  "TN_0135",
+  "TN_B1_0177",
+  "TN_B1_0554",
+  "TN_B1_4031"
+ ],
+ "pseudobulk_samples": [
+  {
+   "patient": "TN_0106",
+   "label": "malignant",
+   "n_cells": 12
+  },
+  {
+   "patient": "TN_0106",
+   "label": "non_malignant",
+   "n_cells": 26
+  },
+  {
+   "patient": "TN_0114_T2",
+   "label": "malignant",
+   "n_cells": 86
+  },
+  {
+   "patient": "TN_0114_T2",
+   "label": "non_malignant",
+   "n_cells": 77
+  },
+  {
+   "patient": "TN_0126",
+   "label": "malignant",
+   "n_cells": 1222
+  },
+  {
+   "patient": "TN_0135",
+   "label": "malignant",
+   "n_cells": 14242
+  },
+  {
+   "patient": "TN_0135",
+   "label": "non_malignant",
+   "n_cells": 14
+  },
+  {
+   "patient": "TN_B1_0131",
+   "label": "malignant",
+   "n_cells": 5505
+  },
+  {
+   "patient": "TN_B1_0177",
+   "label": "malignant",
+   "n_cells": 981
+  },
+  {
+   "patient": "TN_B1_0177",
+   "label": "non_malignant",
+   "n_cells": 460
+  },
+  {
+   "patient": "TN_B1_0554",
+   "label": "malignant",
+   "n_cells": 1957
+  },
+  {
+   "patient": "TN_B1_0554",
+   "label": "non_malignant",
+   "n_cells": 296
+  },
+  {
+   "patient": "TN_B1_4031",
+   "label": "malignant",
+   "n_cells": 5080
+  },
+  {
+   "patient": "TN_B1_4031",
+   "label": "non_malignant",
+   "n_cells": 31
+  }
+ ],
+ "tier2a_sig_fdr05_abs05": 1207,
+ "g2m_paired_diffs": {
+  "TN_0106": 1.6,
+  "TN_0114_T2": 0.506,
+  "TN_0135": 0.715,
+  "TN_B1_0177": 1.125,
+  "TN_B1_0554": 1.402,
+  "TN_B1_4031": 1.309
+ },
+ "g2m_paired_t_p": 0.0013284250435752832,
+ "g2m_positive": "6/6",
+ "g2m_competitive_ranksum_p": 2.00243788207186e-23,
+ "tier2b_sig_fdr05_abs05": 309
+}

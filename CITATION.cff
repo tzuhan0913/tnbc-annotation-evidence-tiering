@@ -1,0 +1,83 @@
+cff-version: 1.2.0
+title: >-
+  Annotation is the zeroth evidence tier: analysis code for the patient-level
+  reappraisal of mitotic drug-target candidates in TNBC single-cell RNA-seq
+message: >-
+  If you use this software or the derived tables in it, please cite the
+  accompanying article and, where a specific version matters, the archived
+  Zenodo record.
+type: software
+license: MIT
+authors:
+  - given-names: Tzu-Han
+    family-names: Yang
+    email: tzuhan0913@gmail.com
+    orcid: https://orcid.org/0009-0008-7520-3415
+    affiliation: >-
+      Graduate Institute of Medical Sciences, College of Medicine,
+      National Defense Medical University, Taipei, Taiwan
+  - given-names: Jia-Sian
+    family-names: Liao
+    affiliation: Taiwan Healthcare Quality Association, Taipei, Taiwan
+  - given-names: Chung-Ying
+    family-names: Yang
+    affiliation: School of Pharmacy, National Defense Medical University, Taipei, Taiwan
+  - given-names: Guo-Shiou
+    family-names: Liao
+    affiliation: >-
+      Department of General Surgery, Tri-Service General Hospital,
+      National Defense Medical University, Taipei, Taiwan
+  - given-names: Zhi-Jie
+    family-names: Hong
+    affiliation: >-
+      Department of General Surgery, Tri-Service General Hospital,
+      National Defense Medical University, Taipei, Taiwan
+  - given-names: Chao-Wen
+    family-names: Pan
+    affiliation: >-
+      Department of General Surgery, Tri-Service General Hospital,
+      National Defense Medical University, Taipei, Taiwan
+  - given-names: Chia-I
+    family-names: Chen
+    affiliation: >-
+      Department of General Surgery, Tri-Service General Hospital,
+      National Defense Medical University, Taipei, Taiwan
+  - given-names: Yi-Jie
+    family-names: Wang
+    affiliation: >-
+      Department of General Surgery, Tri-Service General Hospital,
+      National Defense Medical University, Taipei, Taiwan
+  - given-names: Kuo-Feng
+    family-names: Hsu
+    affiliation: >-
+      Department of General Surgery, Tri-Service General Hospital,
+      National Defense Medical University, Taipei, Taiwan
+  - given-names: An-Chieh
+    family-names: Feng
+    affiliation: >-
+      Department of General Surgery, Tri-Service General Hospital,
+      National Defense Medical University, Taipei, Taiwan
+  - given-names: Jyh-Cherng
+    family-names: Yu
+    affiliation: >-
+      Department of General Surgery, Tri-Service General Hospital,
+      National Defense Medical University, Taipei, Taiwan
+  - given-names: Chi-Ming
+    family-names: Chu
+    affiliation: >-
+      School of Public Health, College of Public Health,
+      National Defense Medical University, Taipei, Taiwan
+  - given-names: Yu-Tien
+    family-names: Chang
+    email: greengarden720925@gmail.com
+    affiliation: >-
+      School of Public Health, College of Public Health,
+      National Defense Medical University, Taipei, Taiwan
+keywords:
+  - single-cell RNA sequencing
+  - malignant-cell annotation
+  - copy-number inference
+  - pseudoreplication
+  - pseudo-bulk analysis
+  - drug-target prioritization
+  - triple-negative breast cancer

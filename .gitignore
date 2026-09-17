@@ -1,0 +1,38 @@
+# ---- primary data: never committed, obtain from the sources in docs/data_sources.md
+data/
+data_external/
+
+# ---- inferCNV intermediates (large, regenerated on every run)
+**/infercnv/
+*.infercnv_obj
+*.dat
+*.preliminary.*
+*.observations.txt
+*.references.txt
+
+# ---- generated figures
+figures/
+
+# ---- R / Python
+.Rhistory
+.RData
+.Rproj.user/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.Renviron
+
+# ---- OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# ---- manuscript working files (kept out of the code record)
+*.docx
+*.doc
+~$*
+
+prepare_code_release.ps1

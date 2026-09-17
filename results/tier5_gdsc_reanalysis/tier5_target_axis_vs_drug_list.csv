@@ -1,0 +1,10 @@
+set,collapse_rule,n_molecules,favourable,fraction,background_n,background_favourable,background_fraction,binom_vs_half,binom_vs_background,fisher_one_sided,fisher_two_sided,wilcoxon_on_z
+mitotic target axis,meanz,20,11,0.55,377,125,0.332,0.412,0.0362,0.0416,0.0541,0.33
+mitotic target axis,any,20,11,0.55,377,135,0.358,0.412,0.0622,0.0693,0.0975,0.33
+mitotic target axis,all,20,11,0.55,377,118,0.313,0.412,0.0237,0.0279,0.0466,0.33
+Tier 4 drug list,meanz,59,17,0.288,338,119,0.352,1,0.879,0.866,0.375,0.998
+Tier 4 drug list,any,59,17,0.288,338,129,0.382,1,0.949,0.938,0.19,0.998
+Tier 4 drug list,all,59,14,0.237,338,115,0.34,1,0.968,0.959,0.133,0.998
+"Tier 4, approved & anti-neoplastic",meanz,37,9,0.243,360,127,0.353,1,0.945,0.939,0.206,0.999
+"Tier 4, approved & anti-neoplastic",any,37,9,0.243,360,137,0.381,1,0.974,0.969,0.11,0.999
+"Tier 4, approved & anti-neoplastic",all,37,6,0.162,360,123,0.342,1,0.996,0.994,0.0271,0.999

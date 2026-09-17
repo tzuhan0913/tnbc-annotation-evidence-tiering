@@ -1,0 +1,11 @@
+patient,n_cells_total,n_author_epithelial,n_author_malignant,n_author_non_malignant,author_celltype_examples,author_malignant_fraction
+CID3946,774,0,0,0,Endothelial; CAFs; PVL; T-cells; Myeloid,
+CID3963,3527,223,222,1,Endothelial; CAFs; PVL; T-cells; Myeloid; Cancer Epithelial; Normal Epithelial,0.995515695067265
+CID44041,2131,151,0,151,Endothelial; CAFs; PVL; B-cells; T-cells; Myeloid; Normal Epithelial,0
+CID4465,1564,134,124,10,Endothelial; CAFs; PVL; B-cells; Plasmablasts; T-cells; Myeloid; Cancer Epithelial; Normal Epithelial,0.925373134328358
+CID4495,7985,1184,1184,0,Endothelial; CAFs; PVL; B-cells; Plasmablasts; T-cells; Myeloid; Cancer Epithelial,1
+CID44971,7986,1629,894,735,Endothelial; CAFs; PVL; B-cells; Plasmablasts; T-cells; Myeloid; Cancer Epithelial; Normal Epithelial,0.548802946593002
+CID44991,7023,4042,4018,24,Endothelial; CAFs; PVL; B-cells; Plasmablasts; T-cells; Myeloid; Cancer Epithelial; Normal Epithelial,0.994062345373577
+CID4513,5619,1058,1058,0,Endothelial; CAFs; PVL; B-cells; T-cells; Myeloid; Cancer Epithelial,1
+CID4515,4149,2205,2169,36,Endothelial; CAFs; PVL; B-cells; Plasmablasts; T-cells; Myeloid; Cancer Epithelial; Normal Epithelial,0.983673469387755
+CID4523,1754,1167,1167,0,Endothelial; CAFs; PVL; T-cells; Myeloid; Cancer Epithelial,1

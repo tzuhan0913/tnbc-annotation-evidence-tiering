@@ -1,0 +1,15 @@
+sample,patient,condition,n_cells
+TN_0106__malignant,TN_0106,malignant,13
+TN_0106__non_malignant,TN_0106,non_malignant,30
+TN_0114_T2__malignant,TN_0114_T2,malignant,87
+TN_0114_T2__non_malignant,TN_0114_T2,non_malignant,86
+TN_0126__malignant,TN_0126,malignant,1218
+TN_0135__malignant,TN_0135,malignant,13924
+TN_0135__non_malignant,TN_0135,non_malignant,22
+TN_B1_0131__malignant,TN_B1_0131,malignant,5437
+TN_B1_0177__malignant,TN_B1_0177,malignant,867
+TN_B1_0177__non_malignant,TN_B1_0177,non_malignant,467
+TN_B1_0554__malignant,TN_B1_0554,malignant,1919
+TN_B1_0554__non_malignant,TN_B1_0554,non_malignant,305
+TN_B1_4031__malignant,TN_B1_4031,malignant,5062
+TN_B1_4031__non_malignant,TN_B1_4031,non_malignant,37

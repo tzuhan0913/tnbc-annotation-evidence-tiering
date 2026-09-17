@@ -1,0 +1,7 @@
+model,label_set,patient_set,minc,n_paired_patients,patients,min_group_cells,median_group_cells,n_genes_tested,n_FDR05,n_FDR05_lfc05,mitotic_FDR05,ig_FDR05
+authors|all,authors,all,10,4,CID4465;CID44971;CID44991;CID4515,10,429.5,13807,680,680,12,0
+authors|intersect,authors,intersect,10,3,CID44971;CID44991;CID4515,24,814.5,14848,178,178,8,0
+authors|intersect_min20,authors,intersect_min20,20,2,CID44971;CID4515,36,814.5,14105,318,318,8,0
+infercnv|all,infercnv,all,10,4,CID44971;CID44991;CID4513;CID4515,19,641,15221,52,52,3,0
+infercnv|intersect,infercnv,intersect,10,3,CID44971;CID44991;CID4515,19,769.5,14764,281,281,10,0
+infercnv|intersect_min20,infercnv,intersect_min20,20,2,CID44971;CID4515,32,769.5,14055,314,314,8,0

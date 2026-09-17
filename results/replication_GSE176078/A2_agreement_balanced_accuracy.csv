@@ -1,0 +1,11 @@
+patient,n_resolved_both,prevalence_malignant,raw_agreement,cohen_kappa,sensitivity_malignant,specificity_non_malignant,balanced_accuracy
+ALL,10822,0.9313,0.9967,0.9744,0.9968,0.9946,0.9957
+CID3963,213,0.9953,0.9953,0,1,0,0.5
+CID44041,15,0,0.8,0,,0.8,0.8
+CID4465,132,0.9394,1,1,1,1,1
+CID4495,1109,1,1,,1,,1
+CID44971,1539,0.566,1,1,1,1,1
+CID44991,3925,0.9952,1,1,1,1,1
+CID4513,644,1,0.9534,0,0.9534,,0.9534
+CID4515,2108,0.9848,1,1,1,1,1
+CID4523,1137,1,0.9982,0,0.9982,,0.9982

@@ -1,0 +1,4 @@
+infercnv,malignant,non_malignant,unresolved
+malignant,28508,0,19
+non_malignant,11,877,65
+unresolved,566,31,276

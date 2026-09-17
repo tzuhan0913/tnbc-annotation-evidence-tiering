@@ -1,0 +1,5 @@
+comparison,axis_fav,axis_n,axis_frac,bg_fav,bg_n,bg_frac,fisher_p,mw_delta_p,axis_median_delta,bg_median_delta
+axis vs all other compounds,11,20,0.55,125,377,0.332,0.0416,0.3296,-0.041,0.125
+targeted axis vs all other compounds,11,18,0.611,125,377,0.332,0.0165,0.1343,-0.093,0.125
+targeted axis vs targeted-signalling background,11,18,0.611,99,270,0.367,0.0364,0.2596,-0.093,0.092
+targeted axis vs cytotoxic background,11,18,0.611,12,47,0.255,0.009,0.0387,-0.093,0.157

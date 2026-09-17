@@ -1,0 +1,7 @@
+author,infercnv,N
+malignant,malignant,10047
+non_malignant,malignant,4
+malignant,non_malignant,32
+non_malignant,non_malignant,739
+malignant,unresolved,757
+non_malignant,unresolved,214

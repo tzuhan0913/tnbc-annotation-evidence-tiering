@@ -1,0 +1,33 @@
+claim,database,input_set,found
+Cell cycle,KEGG,patient,TRUE
+Oocyte meiosis,KEGG,patient,TRUE
+p53 signaling pathway,KEGG,patient,TRUE
+ECM-receptor interaction,KEGG,patient,TRUE
+Focal adhesion,KEGG,patient,TRUE
+chromosome segregation,GO-BP,patient,TRUE
+mitotic cell cycle,GO-BP,patient,TRUE
+mitotic cytokinesis,GO-BP,patient,TRUE
+G2/M transition,GO-BP,patient,TRUE
+kinetochore,GO-CC,patient,TRUE
+spindle,GO-CC,patient,TRUE
+midbody,GO-CC,patient,TRUE
+centrosome,GO-CC,patient,TRUE
+microtubule binding,GO-MF,patient,TRUE
+protein serine/threonine kinase activity,GO-MF,patient,TRUE
+protein kinase binding,GO-MF,patient,TRUE
+Cell cycle,KEGG,cell,TRUE
+Oocyte meiosis,KEGG,cell,TRUE
+p53 signaling pathway,KEGG,cell,TRUE
+ECM-receptor interaction,KEGG,cell,TRUE
+Focal adhesion,KEGG,cell,TRUE
+chromosome segregation,GO-BP,cell,FALSE
+mitotic cell cycle,GO-BP,cell,TRUE
+mitotic cytokinesis,GO-BP,cell,FALSE
+G2/M transition,GO-BP,cell,TRUE
+kinetochore,GO-CC,cell,TRUE
+spindle,GO-CC,cell,FALSE
+midbody,GO-CC,cell,FALSE
+centrosome,GO-CC,cell,FALSE
+microtubule binding,GO-MF,cell,FALSE
+protein serine/threonine kinase activity,GO-MF,cell,FALSE
+protein kinase binding,GO-MF,cell,TRUE

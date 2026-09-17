@@ -1,0 +1,7 @@
+metric,value
+n_author_epithelial_cells,11793
+n_resolved_by_both,10822
+cohen_kappa_resolved,0.974434210773262
+max_patient_disagreement_pp,20
+n_author_unresolved_in_epithelial_set,0
+n_infercnv_unresolved_in_epithelial_set,971

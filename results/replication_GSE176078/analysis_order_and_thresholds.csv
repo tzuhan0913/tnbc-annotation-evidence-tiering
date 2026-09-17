@@ -1,0 +1,19 @@
+item,value
+analysis_order,A annotation agreement -> B cell-level/Tier2 -> C G2M program -> D detection diagnostics
+label_set_1,"Authors' published epithelial labels: Cancer Epithelial=malignant, Normal Epithelial=non_malignant"
+label_set_2,inferCNV-derived labels using a pre-specified rule before any differential expression
+infercnv_cutoff,0.1
+infercnv_analysis_mode,samples
+infercnv_cluster_by_groups,TRUE
+infercnv_denoise,TRUE
+infercnv_HMM,FALSE
+infercnv_skip_subcluster,TRUE (uses inferCNV resume checkpoints to skip STEP 15 sample dendrogram subclustering; this is only for tumor_subclusters/heatmap ordering when HMM=FALSE and no_plot=TRUE)
+infercnv_reference,immune/stromal cells from the same TNBC tumours
+reference_cap,400 cells per patient x cell type
+cnv_score,mean squared denoised CNV deviation per cell
+malignant_threshold,CNV correlation >= 0.5 and CNV score >= reference median
+non_malignant_threshold,CNV correlation < reference 99th percentile and CNV score < reference 99th percentile; otherwise unresolved
+tier2_counting_unit,patient
+tier2_min_cells_per_patient_condition,10
+repeated_measurements,collapse to the measured entity before testing
+excluded_tiers,"no pathway enrichment, no DGIdb, no GDSC, no perturbation-signature analysis"

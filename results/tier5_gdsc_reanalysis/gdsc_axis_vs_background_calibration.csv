@@ -1,0 +1,4 @@
+set,collapse_rule,n_molecules,favourable,fraction,background_n,background_favourable,background_fraction,binom_vs_half,binom_vs_background,fisher_one_sided,fisher_two_sided,wilcoxon_on_z
+mitotic target axis,meanz,20,11,0.55,377,125,0.332,0.412,0.0362,0.0416,0.0541,0.33
+mitotic target axis,any,20,11,0.55,377,135,0.358,0.412,0.0622,0.0693,0.0975,0.33
+mitotic target axis,all,20,11,0.55,377,118,0.313,0.412,0.0237,0.0279,0.0466,0.33

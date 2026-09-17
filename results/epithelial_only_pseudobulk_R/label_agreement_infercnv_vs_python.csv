@@ -1,0 +1,3 @@
+comparison,n,agreement,kappa
+3-level (incl. unresolved),30353,0.9772015945705531,0.7676960392827865
+2-level (resolved cells only),29396,0.9996257994284937,0.9935748220198128

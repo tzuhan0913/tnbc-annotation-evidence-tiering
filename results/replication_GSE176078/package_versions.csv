@@ -1,0 +1,8 @@
+package,version
+R,R version 4.3.3 (2024-02-29 ucrt)
+Matrix,1.6.5
+data.table,1.18.4
+Seurat,5.5.1
+edgeR,4.0.16
+limma,3.58.1
+infercnv,1.18.1

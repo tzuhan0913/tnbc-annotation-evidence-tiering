@@ -1,0 +1,10 @@
+column,n_unique,examples,candidate_role
+cell,100064,CID3586_AAGACCTCAGCATGAG; CID3586_AAGGTTCGTAGTACCT; CID3586_ACCAGTAGTTGTGGCC; CID3586_ACCCACTAGATGTCGG; CID3586_ACTGATGGTCAACTGT; CID3586_ACTTGTTAGGGAAACA,""
+orig.ident,26,CID3586; CID3921; CID45171; CID3838; CID4066; CID44041,sample_or_patient
+nCount_RNA,22984,4581; 1726; 1229; 1352; 1711; 1468,""
+nFeature_RNA,6676,1689; 779; 514; 609; 807; 764,""
+percent.mito,88363,1.50622134905043; 5.79374275782155; 1.38323840520749; 1.92307692307692; 13.3255406195207; 3.61035422343324,""
+subtype,3,HER2+; TNBC; ER+,subtype_or_state
+celltype_subset,49,Endothelial ACKR1; Endothelial RGS5; Endothelial CXCL12; CAFs MSC iCAF-like s1; CAFs MSC iCAF-like s2; CAFs Transitioning s3,cell_type_or_annotation
+celltype_minor,29,Endothelial ACKR1; Endothelial RGS5; Endothelial CXCL12; CAFs MSC iCAF-like; CAFs myCAF-like; PVL Differentiated,cell_type_or_annotation
+celltype_major,9,Endothelial; CAFs; PVL; B-cells; T-cells; Myeloid,cell_type_or_annotation
