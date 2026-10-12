@@ -100,24 +100,48 @@ The second fits the six models — two label sets × three patient sets (`all`, 
 ## 7. Figures
 
 ```
-python scripts/make_figure_from_R_outputs.py   # Figures 2 and 3
-python scripts/make_figures_4_5.py             # Figures 4 and 5
-python scripts/make_figure_6.py                # Figure 6
+python scripts/make_figure_from_R_outputs.py   # Figure 3
+python scripts/make_figure_4_volcano.py        # Figure 4
+python scripts/make_figures_4_5.py             # Figures 5 and 6
+python scripts/make_figure_6.py                # Figure 7
 ```
 
-Figures are written to `figures/`. The results root can be overridden with the `TNBC_RESULTS`
-environment variable (`TNBC_REP_RESULTS` for Figure 6) and the output folder with `TNBC_FIGOUT`.
+The script names keep the numbering the figures had in an earlier draft; the comments above
+give the numbering used in the submitted manuscript. The output files are named after the
+old numbering too (`figure_R_final`, `fig4_volcano`, `fig4_new`, `fig5_new`, `fig6_draft`),
+in that order.
 
-Figure 1 is a schematic and is not produced by code.
+Figures are written to `figures/`. The results root can be overridden with the `TNBC_RESULTS`
+environment variable (`TNBC_REP_RESULTS` for the last script) and the output folder with
+`TNBC_FIGOUT`.
+
+### Figures not produced by code in this repository
+
+**Figure 1** is a schematic of the tiered workflow, drawn by hand.
+
+**Figure 2** shows the t-SNE of the primary cohort coloured by scGNN cluster and by merged
+cell-type label. It visualises the clustering step described in the Methods, which belongs to
+the upstream processing of the cohort rather than to the reanalysis: the embedding was never
+written out as a result file, and the Seurat/SingleCellExperiment object that held it is not
+redistributed here. The figure as published therefore cannot be re-rendered point for point
+from this repository. Re-running `PreprocessingscGNN.py` and `scGNN.py` with the parameters
+given in the Methods and embedding the result with `scater::runTSNE` reproduces an
+equivalent figure, but t-SNE is stochastic and scGNN is initialised at random, so the layout
+will differ.
+
+No quantitative claim in the manuscript depends on Figure 2. Every number reported in the
+Results comes from the Tier 0 to Tier 5 outputs under `results/`, which the scripts above
+regenerate in full.
 
 ### One panel needs an intermediate that is not redistributed
 
-Panel F of `make_figure_from_R_outputs.py` compares the detection rate of the manuscript's
-two legacy gene lists against the detection rate of every gene FindMarkers tested. The two
-legacy curves are drawn from `legacy_gene_lists_in_new_analysis.csv`, which is included here.
-The grey reference curve covering all tested genes needs the detection rate of each gene
-across all 54,820 cells, which is a property of the whole dataset rather than a result of
-this analysis, so it is not shipped. The script prints a note and omits that one curve.
+Panel F of `make_figure_from_R_outputs.py` (panel F of Figure 3) compares the detection rate
+of the manuscript's two legacy gene lists against the detection rate of every gene
+FindMarkers tested. The two legacy curves are drawn from
+`legacy_gene_lists_in_new_analysis.csv`, which is included here. The grey reference curve
+covering all tested genes needs the detection rate of each gene across all 54,820 cells,
+which is a property of the whole dataset rather than a result of this analysis, so it is not
+shipped. The script prints a note and omits that one curve.
 
 To draw it, write a two-column CSV (gene, fraction of cells in which the gene is detected)
 and point `TNBC_DETECTION` at it. From the Seurat object used in step 2:
@@ -128,4 +152,3 @@ det <- Matrix::rowMeans(counts > 0)
 write.csv(data.frame(gene = names(det), detection_rate = as.numeric(det)),
           "detection_rates.csv", row.names = FALSE)
 ```
-
