@@ -96,7 +96,7 @@ ax.set_title('B   Enrichment, patient-level input', loc='left',
 ax.legend(handles=[Patch(color=DBC[k], label=k) for k in ('KEGG', 'GO-BP', 'GO-CC', 'GO-MF')],
           loc='lower center', bbox_to_anchor=(0.5, -0.155), ncol=4, frameon=False,
           fontsize=7, handlelength=0.9, columnspacing=0.9, handletextpad=0.35)
-fig.savefig(f'{OUT}/fig4_new.png', dpi=400)
+fig.savefig(f'{OUT}/fig4_new.png', dpi=400, bbox_inches='tight', pad_inches=0.04)
 plt.close(fig)
 print('fig4 written; panel A rows', len(order), '| panel B bars', len(labs))
 
@@ -200,7 +200,7 @@ lo = min(min(s_) for _, _, s_ in rows); hi = max(max(s_) for _, _, s_ in rows)
 pad = (hi - lo) * 0.10
 ax.set_xlim(lo - pad, hi + pad * 2.2)
 ax.set_ylim(-0.8, len(rows) - 0.2)
-fig.savefig(f'{OUT}/fig5_new.png', dpi=400)
+fig.savefig(f'{OUT}/fig5_new.png', dpi=400, bbox_inches='tight', pad_inches=0.04)
 plt.close(fig)
 print('fig5 written; panel C molecules', len(rows),
       '| favourable', sum(1 for _, v, _ in rows if v > 0))

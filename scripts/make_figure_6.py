@@ -113,7 +113,7 @@ ax.legend(handles=[Patch(color=BLUE, label='significant under both'),
 ax.set_title('C   On identical patients, the two annotations\n      yield concordant effect sizes',
              loc='left', fontsize=8.5, fontweight='bold')
 
-fig.savefig(f'{OUT}/fig6_draft.png', dpi=400)
+fig.savefig(f'{OUT}/fig6_draft.png', dpi=400, bbox_inches='tight', pad_inches=0.04)
 plt.close(fig)
 print('fig6 written | cohort 2 patients', len(C2), '| genes', len(rows),
       '| r = %.3f' % r_, '| discordant', int(disc.sum()))
