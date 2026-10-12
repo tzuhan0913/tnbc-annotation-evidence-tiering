@@ -1,10 +1,13 @@
 """Final figure, built from the official inferCNV + edgeR QL outputs (R)."""
-import json, sys, numpy as np, pandas as pd, matplotlib
+import json, os, sys, numpy as np, pandas as pd, matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-R = "/mnt/user-data/uploads/投稿文章(JS)/analysis/epithelial_only_pseudobulk_R/"
-OUT = '/home/claude/cnv/out/'
+_HERE = os.path.dirname(os.path.abspath(__file__))
+R = os.environ.get('TNBC_RESULTS',
+     os.path.join(_HERE, '..', 'results', 'epithelial_only_pseudobulk_R')) + os.sep
+OUT = os.environ.get('TNBC_FIGOUT', os.path.join(_HERE, '..', 'figures')) + os.sep
+os.makedirs(OUT, exist_ok=True)
 BLUE, ORANGE, GREEN, GRAY, INK, MUTED = '#2E6BA8', '#D9822B', '#4C9A6B', '#B5B5B5', '#1a1a1a', '#6b6b6b'
 plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 8, 'axes.edgecolor': '#999999',
                      'axes.linewidth': .6, 'xtick.color': MUTED, 'ytick.color': MUTED,
@@ -18,7 +21,7 @@ t1 = pd.read_csv(R + 'tier1_cell_level_findmarkers.csv').sort_values('p_val').re
 t1['rank'] = np.arange(1, len(t1) + 1)
 t2 = pd.read_csv(R + 'tier2a_paired_edgeR_QL_min10.csv')
 cf = pd.read_csv(R + 'g2m_camera_fry_min10.csv')
-g2 = json.load(open(OUT + 'g2m_R_labels.json'))
+g2 = json.load(open(R + 'g2m_per_patient_scores.json'))
 legacy_pct = {'TN_0106': 29.7, 'TN_0114_T2': 58.8, 'TN_0126': 93.9, 'TN_0135': 82.0,
               'TN_B1_0131': 7.6, 'TN_B1_0177': 46.0, 'TN_B1_0554': 51.1, 'TN_B1_4031': 48.3}
 
@@ -124,13 +127,26 @@ for s in ['top', 'right']: ax.spines[s].set_visible(False)
 
 # ---- F: detection rate of the legacy gene lists ----
 ax = fig.add_subplot(gs[4, :2])
-det = pd.read_csv(OUT + 'detection_rates.csv', index_col=0).iloc[:, 0]
-l174 = pd.read_csv('/home/claude/cnv/data/legacy_stringent174.csv').Gene.str.strip()
-l869 = pd.read_csv('/home/claude/cnv/data/legacy_broad869.csv').Gene.str.strip()
+leg = pd.read_csv(R + 'legacy_gene_lists_in_new_analysis.csv')
+det = leg.drop_duplicates('gene').set_index('gene')['detection_rate_all_cells']
+l174 = leg.loc[leg.list == 'legacy_stringent174', 'gene'].str.strip()
+l869 = leg.loc[leg.list == 'legacy_broad869', 'gene'].str.strip()
+# The grey reference curve covers every gene FindMarkers tested, so it needs the
+# detection rate of each gene across all 54,820 cells. That is a whole-dataset
+# intermediate rather than a result, and it is not redistributed here; set
+# TNBC_DETECTION to a two-column CSV (gene, detection rate) to draw it. See
+# docs/run_order.md for the one Seurat call that produces it.
+_dpath = os.environ.get('TNBC_DETECTION', os.path.join(R, 'detection_rates.csv'))
+series = [('manuscript 869-gene list', l869, GREEN),
+          ('manuscript 174-gene list', l174, ORANGE)]
+if os.path.exists(_dpath):
+    det = pd.read_csv(_dpath, index_col=0).iloc[:, 0]
+    series.insert(0, ('all 15,022 genes tested', pd.Series(t1.gene), GRAY))
+else:
+    print('note: %s not found; panel F omits the all-tested-genes reference curve'
+          % _dpath, file=sys.stderr)
 bins = np.logspace(-3.2, 0, 30)
-for nm, L, c in [('all 15,022 genes tested', pd.Series(t1.gene), GRAY),
-                 ('manuscript 869-gene list', l869, GREEN),
-                 ('manuscript 174-gene list', l174, ORANGE)]:
+for nm, L, c in series:
     s = det.reindex(L).dropna()
     ax.hist(s, bins=bins, density=True, histtype='step', lw=1.6, color=c, label=f'{nm} (median {s.median()*100:.1f}%)')
 ax.axvline(0.01, color=INK, lw=.7, ls='--')

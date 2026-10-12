@@ -109,3 +109,23 @@ Figures are written to `figures/`. The results root can be overridden with the `
 environment variable (`TNBC_REP_RESULTS` for Figure 6) and the output folder with `TNBC_FIGOUT`.
 
 Figure 1 is a schematic and is not produced by code.
+
+### One panel needs an intermediate that is not redistributed
+
+Panel F of `make_figure_from_R_outputs.py` compares the detection rate of the manuscript's
+two legacy gene lists against the detection rate of every gene FindMarkers tested. The two
+legacy curves are drawn from `legacy_gene_lists_in_new_analysis.csv`, which is included here.
+The grey reference curve covering all tested genes needs the detection rate of each gene
+across all 54,820 cells, which is a property of the whole dataset rather than a result of
+this analysis, so it is not shipped. The script prints a note and omits that one curve.
+
+To draw it, write a two-column CSV (gene, fraction of cells in which the gene is detected)
+and point `TNBC_DETECTION` at it. From the Seurat object used in step 2:
+
+```r
+counts <- GetAssayData(obj, assay = "RNA", layer = "counts")
+det <- Matrix::rowMeans(counts > 0)
+write.csv(data.frame(gene = names(det), detection_rate = as.numeric(det)),
+          "detection_rates.csv", row.names = FALSE)
+```
+
