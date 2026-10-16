@@ -1,0 +1,5 @@
+gene_list,symbols,n_query_genes,genes_with_named_compound,compounds_any,compounds_multi_target
+original 869-gene cell-level list,as recorded,869,152,2225,332
+original 869-gene cell-level list,mapped to current HGNC symbols,869,156,2232,335
+830-gene patient-level list,as recorded,830,253,2649,532
+830-gene patient-level list,mapped to current HGNC symbols,830,258,2664,546

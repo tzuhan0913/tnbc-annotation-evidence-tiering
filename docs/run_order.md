@@ -3,6 +3,13 @@
 Everything is run from the repository root. Scripts expect the primary data under `data/` and
 the external resources under `data_external/`, as described in [`data_sources.md`](data_sources.md).
 
+**Where outputs go.** The R scripts locate the root by its `data/GSE161529` folder and write their
+tables to `analysis/<step>/`. The tables shipped in `results/<step>/` are the outputs used for the
+manuscript, under the same sub-folder and file names, and the descriptions below refer to them
+by their `results/` location. The Python scripts read the shipped `results/` tables by default;
+the environment variable that points them at freshly regenerated tables instead is given with
+each script (for the two Tier 4 Python scripts, `TNBC_RESULTS=analysis`).
+
 ## 0. Setup
 
 ```
@@ -26,7 +33,14 @@ Writes `results/epithelial_only_pseudobulk_R/`:
   `label_agreement_crosstab.csv` — the two implementations of the same rule, cell by cell
 - `tier1_cell_level_findmarkers.csv` — Tier 1
 - `tier2a_paired_edgeR_QL_min10.csv`, `tier2a_loso_key_genes_min10.csv` — Tier 2
-- `legacy_gene_lists_in_new_analysis.csv` — where the original gene lists land under the new labels
+
+**Fixed historical input, not regenerated.** `results/epithelial_only_pseudobulk_R/legacy_gene_lists_in_new_analysis.csv`
+holds the original analysis's 174- and 869-gene lists (Tables S5 and S6 of the article) with
+each gene's detection rate and Tier 1 result under the new labels. No script in this repository
+writes it, so it is shipped as an input: the Python scripts always read it from `results/`, even
+when `TNBC_RESULTS` points them at regenerated tables (override with `TNBC_LEGACY`). The optional
+`legacy` modes of `run_tier3_pathfindr.R` and `run_tier4_dgidb.R` read the same 869-gene list from
+a non-public file of the original analysis; the default runs do not need it.
 
 The Python implementation of the same malignancy rule, and the direct edgeR-versus-voom
 comparison, live in `results/epithelial_only_pseudobulk_20260912/` and
@@ -41,6 +55,9 @@ Rscript scripts/run_tier2_sensitivity.R
 Writes the `_min20` counterparts, the unpaired model, and the G2/M results
 (`g2m_camera_fry_min10.csv`, `g2m_per_patient_min10.csv`,
 `tier2_threshold_sensitivity.csv`) into the same folder.
+
+Earlier pseudo-bulk comparisons from the original analysis are not part of the reanalysis; see
+[`analysis_scope.md`](analysis_scope.md) for the reasons.
 
 ## 3. Tier 3 — pathways
 
@@ -59,6 +76,20 @@ Rscript scripts/run_tier4_dgidb.R
 
 Writes `results/tier4_dgidb_reanalysis/`, including `original_27_compounds_recheck.csv` and
 `candidate_drugs_for_external_validation.csv` (532 molecules).
+
+```
+python scripts/tier4_release_vs_gene_set.py
+```
+
+Separates the two things that changed between the original 27 compounds and the re-run: the
+original 869-gene list against the current DGIdb release returns 332 multi-target compounds,
+the 830-gene patient-level list 532 (the two lists share 114 genes). The original list is read
+from `results/epithelial_only_pseudobulk_R/legacy_gene_lists_in_new_analysis.csv` (rows
+`legacy_broad869`; the same list as Table S6). Writes `dgidb_release_vs_gene_set.csv`. `run_tier4_dgidb.R` itself writes
+`original_27_compounds_recheck.csv`, with separate columns for "in DGIdb at all" (checked against
+the full interactions table, not only the matched rows) and "number of query genes hit". Drug
+names given as the literal string "NULL" (94 interaction records over 91 genes in this query) are
+removed before ranking, so the candidate list has 532 rows and the edge table 4,008.
 
 ## 5. Tier 5 — external pharmacogenomics
 
@@ -79,6 +110,25 @@ The strict run writes the same file names with a `_strictpanel` suffix. Outputs 
 `gdsc_molecule_level_calls.csv` (the collapse of repeated screens),
 `gdsc_axis_vs_background_calibration.csv` (the empirical background, not a 0.5 null) and
 `tier5_target_axis_vs_drug_list.csv`.
+
+## 5b. Tier 4 symbol-matching sensitivity (after Tier 5)
+
+```
+python scripts/tier4_symbol_sensitivity.py
+```
+
+Run after Tier 5: the last part reuses the Tier 5 molecule calls. It repeats the Tier 4 count
+after converting each query symbol to its current approved HGNC symbol where a unique previous
+symbol or alias allows it (the two spreadsheet dates in the original list are restored first);
+symbols without a unique match are kept as recorded (151 in the original 869-gene list, 13 in the
+830-gene list). The HGNC table is the one distributed with the INDRA Python package v1.24.0
+(`data_external/hgnc/`, see `data_sources.md`), not necessarily the current HGNC release.
+Result: 546 instead of 532 compounds for the patient-level list and 335 instead of 332 for the
+original list. Thirteen of the 14 added compounds reach the two-gene threshold through one
+renamed gene, GARS (now GARS1), and one through HIST3H2A (now H2AC25); only entinostat is an
+evaluable GDSC molecule, and adding it leaves the drug list below background under every
+collapse rule. Writes `dgidb_symbol_sensitivity.csv`, `dgidb_symbol_sensitivity_changes.csv` and
+`dgidb_symbol_sensitivity_tier5.csv`.
 
 ## 6. Replication cohort
 
@@ -124,14 +174,14 @@ cell-type label. It visualises the clustering step described in the Methods, whi
 the upstream processing of the cohort rather than to the reanalysis: the embedding was never
 written out as a result file, and the Seurat/SingleCellExperiment object that held it is not
 redistributed here. The figure as published therefore cannot be re-rendered point for point
-from this repository. Re-running `PreprocessingscGNN.py` and `scGNN.py` with the parameters
-given in the Methods and embedding the result with `scater::runTSNE` reproduces an
-equivalent figure, but t-SNE is stochastic and scGNN is initialised at random, so the layout
-will differ.
+from this repository. The final cell membership of the historical embedding is also unavailable. Re-running
+clustering would produce a new analysis, not verify the cell set in the historical panel.
+The recorded original QC stage retained 51,189 of 65,376 cells; it is not a verified final
+cell count for Figure 2. See `analysis_scope.md` for the provenance limitation.
 
-No quantitative claim in the manuscript depends on Figure 2. Every number reported in the
-Results comes from the Tier 0 to Tier 5 outputs under `results/`, which the scripts above
-regenerate in full.
+No quantitative claim in the manuscript depends on Figure 2. Quantitative reanalysis results come from the Tier 0 to Tier 5 outputs under `results/`.
+Reported historical malignant fractions and legacy gene lists are retained as historical
+inputs, with their provenance limits identified in the manuscript and `analysis_scope.md`.
 
 ### One panel needs an intermediate that is not redistributed
 

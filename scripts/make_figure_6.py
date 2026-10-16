@@ -49,7 +49,7 @@ ax.axvline(len(C1) + 0.3, color='#DDDDDD', linewidth=0.8)
 ax.legend(handles=[plt.Line2D([], [], marker='o', linestyle='', color='#555555',
                               label='our pre-specified inferCNV rule'),
                    plt.Line2D([], [], marker='o', linestyle='', markerfacecolor='white',
-                              markeredgecolor='#555555', label='the published labels')],
+                              markeredgecolor='#555555', label='comparator labels (cohort 1: original analysis; cohort 2: published)')],
           loc='upper left', bbox_to_anchor=(0.0, 1.0), frameon=False, fontsize=7,
           handletextpad=0.3, ncol=2, columnspacing=1.4)
 ax.set_title('A   Per-patient malignant fraction under two defensible annotations', loc='left',

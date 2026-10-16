@@ -1,0 +1,4 @@
+gene_list,n_query_genes,genes_with_named_compound,compounds_any,compounds_multi_target,dgidb_release
+original 869-gene cell-level list,869,152,2225,332,current (data_external/dgidb/interactions.tsv)
+830-gene patient-level list,830,253,2649,532,current (data_external/dgidb/interactions.tsv)
+overlap of the two lists,114,,,,

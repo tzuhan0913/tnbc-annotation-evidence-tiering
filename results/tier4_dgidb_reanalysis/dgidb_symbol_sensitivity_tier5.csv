@@ -1,0 +1,4 @@
+collapse_rule,added_compounds,added_evaluable_in_gdsc,fraction_as_recorded,background_as_recorded,fisher_as_recorded,fraction_mapped,background_mapped,fisher_mapped
+meanz,14,1,0.2881,0.3521,0.3753,0.3,0.3501,0.555
+any,14,1,0.2881,0.3817,0.1897,0.3,0.3798,0.2495
+all,14,1,0.2373,0.3402,0.1335,0.25,0.3383,0.231

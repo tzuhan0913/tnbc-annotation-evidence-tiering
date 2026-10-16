@@ -97,8 +97,8 @@ sel <- c(c_gene, c_drug, c_score, c_appr, c_anti, c_type)
 sel <- sel[!is.na(sel)]
 ed  <- unique(dg[get(c_gene) %in% genes$gene, ..sel])
 setnames(ed, c_gene, "gene"); setnames(ed, c_drug, "drug")
-## DGIdb ships rows whose drug_name is the literal string "NULL".  In this query they amount to 91
-## gene interactions, which is more than any real compound, so an unfiltered multi-target ranking
+## DGIdb ships rows whose drug_name is the literal string "NULL".  In this query they amount to 94
+## interaction records spanning 91 genes, which is more than any real compound, so an unfiltered multi-target ranking
 ## puts a non-existent drug at the top of the candidate list.  Drop them and say how many.
 n_null <- sum(toupper(trimws(ed$drug)) %in% c("NULL", "NA", "NONE"))
 if (n_null) cat("dropping", n_null, "edges whose drug name is NULL/NA - a DGIdb artefact\n")
@@ -135,8 +135,14 @@ if (file.exists(oldf)) {
   oldd <- toupper(trimws(old[[nm]]))
   newd <- toupper(trimws(multi$drug))
   cmp <- data.table(original_drug = sort(unique(oldd)))
-  cmp[, retained_in_reanalysis := original_drug %in% newd]
-  cmp[, still_in_dgidb_at_all := original_drug %in% toupper(trimws(drug$drug))]
+  ## Three separate questions.  `drug` only holds compounds that hit at least one QUERY gene, so it
+  ## cannot answer "is the compound still in DGIdb?" - that needs the full interactions table.
+  all_dg  <- toupper(gsub("\\s+", " ", trimws(dg[[c_drug]])))
+  key     <- function(x) gsub("[^A-Z0-9]", "", toupper(x))
+  ngenes  <- setNames(drug$n_genes, key(drug$drug))
+  cmp[, in_dgidb_any_gene := key(original_drug) %in% key(all_dg)]
+  cmp[, n_query_genes_hit := { v <- ngenes[key(original_drug)]; ifelse(is.na(v), 0L, as.integer(v)) }]
+  cmp[, retained_in_reanalysis := n_query_genes_hit >= MIN_GENES]
   fwrite(cmp, file.path(outdir, "original_27_compounds_recheck.csv"))
   cat("\n===== original candidate compounds =====\n")
   cat(sprintf("%d of %d retained as multi-target hits under the %s gene set\n",

@@ -22,7 +22,7 @@ t1['rank'] = np.arange(1, len(t1) + 1)
 t2 = pd.read_csv(R + 'tier2a_paired_edgeR_QL_min10.csv')
 cf = pd.read_csv(R + 'g2m_camera_fry_min10.csv')
 g2 = json.load(open(R + 'g2m_per_patient_scores.json'))
-legacy_pct = {'TN_0106': 29.7, 'TN_0114_T2': 58.8, 'TN_0126': 93.9, 'TN_0135': 82.0,
+legacy_pct = {'TN_0106': 29.7, 'TN_0114_T2': 58.8, 'TN_0126': 93.9, 'TN_0135': 82.3,
               'TN_B1_0131': 7.6, 'TN_B1_0177': 46.0, 'TN_B1_0554': 51.1, 'TN_B1_4031': 48.3}
 
 ct = pd.crosstab(lab.patient, lab.label)
@@ -127,7 +127,10 @@ for s in ['top', 'right']: ax.spines[s].set_visible(False)
 
 # ---- F: detection rate of the legacy gene lists ----
 ax = fig.add_subplot(gs[4, :2])
-leg = pd.read_csv(R + 'legacy_gene_lists_in_new_analysis.csv')
+# The original gene lists are a fixed historical input that no script regenerates, so they are read
+# from the copy shipped in results/ even when TNBC_RESULTS points at freshly regenerated tables.
+leg = pd.read_csv(os.environ.get('TNBC_LEGACY', os.path.join(
+    _HERE, '..', 'results', 'epithelial_only_pseudobulk_R', 'legacy_gene_lists_in_new_analysis.csv')))
 det = leg.drop_duplicates('gene').set_index('gene')['detection_rate_all_cells']
 l174 = leg.loc[leg.list == 'legacy_stringent174', 'gene'].str.strip()
 l869 = leg.loc[leg.list == 'legacy_broad869', 'gene'].str.strip()

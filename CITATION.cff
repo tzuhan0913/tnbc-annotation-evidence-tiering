@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 title: >-
-  Annotation is the zeroth evidence tier: analysis code for the patient-level
-  reappraisal of mitotic drug-target candidates in TNBC single-cell RNA-seq
+  Patient-level reanalysis of triple-negative breast cancer single-cell data
+  supports mitotic targets but not the derived compound list: analysis code
 message: >-
   If you use this software or the derived tables in it, please cite the
   accompanying article and, where a specific version matters, the archived

@@ -111,28 +111,48 @@ gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.25], width_ratios=[1.05, 1.0],
 
 # -- A: molecule-level calibration under three collapse rules
 ax = fig.add_subplot(gs[0, 0])
-# k, n for (axis, tier4) under each collapse rule, plus the background rate for that rule
-RULES = [('mean z\nacross screens', (11, 20), (17, 59), 33.2, '0.054', '0.38'),
-         ('any screen\nfavorable',   (11, 20), (17, 59), 35.8, '0.098', '0.19'),
-         ('every screen\nfavorable', (11, 20), (14, 59), 31.3, '0.047', '0.13')]
+# Counts, background rates and two-sided Fisher P values are read from the Tier 5 output rather
+# than typed in.  The two sets have DIFFERENT backgrounds (the background is "GDSC molecules
+# outside the set"), so each bar gets its own dashed background line.
+tvd = list(csv.DictReader(open(f'{A}/tier5_gdsc_reanalysis/tier5_target_axis_vs_drug_list.csv')))
+def _row(setname, rule):
+    return next(r for r in tvd if r['set'] == setname and r['collapse_rule'] == rule)
+def _p(x):
+    from decimal import Decimal, ROUND_HALF_UP
+    d = Decimal(x)
+    return str(d.quantize(Decimal('0.001') if d < Decimal('0.1') else Decimal('0.01'), ROUND_HALF_UP))
+RULE_LABELS = [('meanz', 'mean z\nacross screens'), ('any', 'any screen\nfavorable'),
+               ('all', 'every screen\nfavorable')]
+RULES = []
+for rule, lab in RULE_LABELS:
+    a_, b_ = _row('mitotic target axis', rule), _row('Tier 4 drug list', rule)
+    RULES.append((lab, (int(a_['favourable']), int(a_['n_molecules'])),
+                  (int(b_['favourable']), int(b_['n_molecules'])),
+                  100 * float(a_['background_fraction']), 100 * float(b_['background_fraction']),
+                  _p(a_['fisher_two_sided']), _p(b_['fisher_two_sided'])))
 w = 0.33
 xs = np.arange(len(RULES))
-ax.bar(xs - w/2, [100*a[0]/a[1] for _, a, _, _, _, _ in RULES], width=w, color=BLUE,
+ax.bar(xs - w/2, [100*a[0]/a[1] for _, a, _, _, _, _, _ in RULES], width=w, color=BLUE,
        label='mitotic target axis')
-ax.bar(xs + w/2, [100*b[0]/b[1] for _, _, b, _, _, _ in RULES], width=w, color=ORANGE,
+ax.bar(xs + w/2, [100*b[0]/b[1] for _, _, b, _, _, _, _ in RULES], width=w, color=ORANGE,
        label='Tier 4 drug list')
-for x, (lab, a, b, bg, pa, pb) in zip(xs, RULES):
-    ax.plot([x - 0.5, x + 0.5], [bg, bg], color=GREY, linestyle='--', linewidth=1.0)
+for x, (lab, a, b, bga, bgb, pa, pb) in zip(xs, RULES):
+    for cx, bg in ((x - w/2, bga), (x + w/2, bgb)):
+        ax.plot([cx - w/2 - 0.03, cx + w/2 + 0.03], [bg, bg], color='#555555', linestyle='--',
+                linewidth=1.0, zorder=3)
     ax.text(x - w/2, 100*a[0]/a[1] + 1.8, f'{a[0]}/{a[1]}\nP={pa}', ha='center', fontsize=6.4)
-    ax.text(x + w/2, 100*b[0]/b[1] + 1.8, f'{b[0]}/{b[1]}\nP={pb}', ha='center', fontsize=6.4)
-    ax.text(x - 0.47, bg + 0.8, f'{bg:.1f}%', ha='left', va='bottom', fontsize=6.0, color='#777777')
+    ax.text(x + w/2, max(100*b[0]/b[1], bgb) + 2.4, f'{b[0]}/{b[1]}\nP={pb}', ha='center',
+            fontsize=6.4)
 ax.set_xticks(xs); ax.set_xticklabels([r[0] for r in RULES], fontsize=6.9)
 ax.set_xlabel('rule for collapsing repeated GDSC screens', fontsize=7.2)
 ax.set_ylabel('TNBC-favorable molecules (%)')
 ax.set_ylim(0, 84)
-ax.legend(frameon=False, fontsize=6.9, loc='upper center', bbox_to_anchor=(0.62, 1.0),
-          handlelength=1.0)
-ax.text(-0.52, 80, 'dashed line = background rate for that rule', fontsize=6.2, color='#666666')
+from matplotlib.lines import Line2D
+_h, _l = ax.get_legend_handles_labels()
+_h.append(Line2D([0], [0], color='#555555', linestyle='--', linewidth=1.0))
+_l.append('background for that set and rule')
+ax.legend(_h, _l, frameon=False, fontsize=6.6, loc='upper right', bbox_to_anchor=(1.0, 1.02),
+          handlelength=1.6)
 ax.set_title('A   Molecule-level calibration, three collapse rules',
              loc='left', fontsize=8.5, fontweight='bold')
 
@@ -148,7 +168,7 @@ ax.set_yscale('log'); ax.set_ylim(0.6, 20000)
 ax.set_xticks(xs); ax.set_xticklabels([s_[0] for s_ in steps], fontsize=6.9)
 ax.set_ylabel('Compounds (log scale)')
 ax.annotate('bortezomib — reaches the gene list\nthrough proteasome subunits,\nnot the mitotic axis',
-            xy=(3, 1.3), xytext=(1.1, 160), fontsize=6.4, color='#B23A48', ha='center',
+            xy=(3, 3.2), xytext=(2.0, 1500), fontsize=6.4, color='#B23A48', ha='center',
             arrowprops=dict(arrowstyle='-|>', color='#B23A48', linewidth=0.7,
                             connectionstyle='arc3,rad=-0.25', shrinkB=3))
 ax.set_title('B   Attrition of the Tier 4 drug list', loc='left', fontsize=8.5, fontweight='bold')

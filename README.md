@@ -1,11 +1,11 @@
-# Annotation as the zeroth evidence tier — analysis code
+# Patient-level reanalysis of TNBC drug-target evidence
 
 Analysis code and derived result tables for:
 
 > Yang T-H, Liao J-S, Yang C-Y, Liao G-S, Hong Z-J, Pan C-W, Chen C-I, Wang Y-J, Hsu K-F,
 > Feng A-C, Yu J-C, Chu C-M, Chang Y-T.
-> **Annotation is the zeroth evidence tier: malignant-cell labelling determines which drug
-> targets a single-cell atlas nominates in triple-negative breast cancer.**
+> **Patient-level reanalysis of triple-negative breast cancer single-cell data supports mitotic
+> targets but not the derived compound list.**
 
 The manuscript reanalyses public triple-negative breast cancer (TNBC) single-cell RNA-seq data
 through a tiered evidence workflow that begins with malignant-cell annotation (Tier 0) and
@@ -13,8 +13,10 @@ continues through cell-level discovery (Tier 1), patient-level pseudo-bulk testi
 program-level testing (Tier 3), drug–gene matching (Tier 4) and external pharmacogenomic
 cross-reference (Tier 5), with an external replication cohort for the annotation tier.
 
-This repository contains **every script used to produce the numbers, figures and tables in the
-manuscript**, together with the derived result tables those scripts wrote. It does not contain
+This repository contains the reanalysis scripts and their derived result tables. Figure 1 is
+a schematic and Figure 2 is a historical embedding; their provenance and reproduction limits
+are described in `docs/run_order.md`. What the reanalysis uses, what it sets aside and
+why are summarised in `docs/analysis_scope.md`. It does not contain
 the primary data, which are redistributed by their original sources under their own terms; see
 [`docs/data_sources.md`](docs/data_sources.md) for how to obtain each input.
 
@@ -41,13 +43,16 @@ docs/        run order, data sources, environment
 | `run_tier2_sensitivity.R` | 2 | minimum-cells-per-group sensitivity (10 vs 20), unpaired sensitivity model, G2/M camera and fry |
 | `run_tier3_pathfindr.R` | 3 | pathfindR enrichment on the cell-level and the patient-level gene lists; recheck of the sixteen original pathway claims |
 | `run_tier4_dgidb.R` | 4 | DGIdb drug–gene matching on the patient-level list; recheck of the twenty-seven original compounds |
+| `tier4_release_vs_gene_set.py` | 4 | separates DGIdb-release changes from query-gene changes |
+| `tier4_symbol_sensitivity.py` | 4 | repeats the Tier 4 count after mapping query symbols to current HGNC symbols |
 | `check_tnbc_cell_line_panel.R` | 5 | curates the TNBC cell-line panel from Cellosaurus and DepMap expression, and writes both the curated and the strict panel |
 | `run_tier5_gdsc.R` | 5 | GDSC cross-reference: molecule-level collapse of repeated screens, empirical background calibration, target-axis and drug-list tests, under both panels |
 | `run_replication_GSE176078.R` | 0–3 | replication cohort: inferCNV under the same pre-specified rule, agreement with the published labels, and the tiered analysis under each label set |
 | `run_replication_GSE176078_followup.R` | 0–2 | the intersection analysis: the same patients under both label sets, and the ≥ 20 cells-per-group model |
-| `make_figure_from_R_outputs.py` | — | Figures 2 and 3 |
-| `make_figures_4_5.py` | — | Figures 4 and 5 |
-| `make_figure_6.py` | — | Figure 6 |
+| `make_figure_from_R_outputs.py` | — | Figure 3 |
+| `make_figure_4_volcano.py` | — | Figure 4 |
+| `make_figures_4_5.py` | — | Figures 5 and 6 |
+| `make_figure_6.py` | — | Figure 7 |
 
 The run order and what each step consumes and produces are in
 [`docs/run_order.md`](docs/run_order.md).
@@ -77,8 +82,10 @@ can be traced to one of these files.
 3. Check the environment: `Rscript scripts/01_r_environment_check.R`.
 4. Run the scripts in the order given in [`docs/run_order.md`](docs/run_order.md).
 
-The scripts write into the same `results/` folder names used here, so a full re-run can be
-compared file by file against the tables in this repository.
+The R scripts write their tables to `analysis/<step>/`, using the same sub-folder and file names
+as the tables shipped in `results/<step>/`, so a full re-run can be compared file by file against
+this repository. The Python scripts read `results/` by default; see `docs/run_order.md` for how to
+point them at regenerated tables, and for the one fixed historical input that is not regenerated.
 
 Two notes that matter for exact reproduction:
 

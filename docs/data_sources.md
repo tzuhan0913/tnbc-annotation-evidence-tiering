@@ -25,8 +25,17 @@ single-cell transcriptomics.* Sci Data. 2022.
 - Code: <https://github.com/yunshun/HumanBreast10X>
 - Download helper: `scripts/00_download_figshare_objects.ps1`
 
-These objects supply the published cell-level labels that the annotation tier is compared
-against.
+These objects supply the starting point of the reanalysis: the 54,820 cells that passed the
+atlas authors' quality control, and the released clusters 0 and 2 that define the 30,353 tumour
+epithelial cells entering Tier 0. The annotation comparison in the primary cohort is not made
+against labels in these objects but against the per-patient malignant fractions reported by the
+original analysis of this cohort (see `analysis_scope.md`).
+
+The gene lists of the original analysis (the 174- and 869-gene cell-level lists, also Tables S5
+and S6 of the article) are not a public dataset; they are reproduced in
+`results/epithelial_only_pseudobulk_R/legacy_gene_lists_in_new_analysis.csv`, which is the copy
+the scripts read. Two entries of the 869-gene list, `3-Sep` and `4-Sep`, are spreadsheet date
+conversions of SEPT3 and SEPT4 and are kept as recorded.
 
 ## Replication cohort — GSE176078
 
@@ -55,6 +64,14 @@ GENCODE v19 gene positions, in the three-column format inferCNV expects
 Note: the bulk file contains interaction rows whose drug name is the literal string `NULL`.
 `run_tier4_dgidb.R` drops these; leaving them in makes `NULL` the highest-degree "drug" in the
 network.
+
+## Gene symbols — HGNC
+
+- `data_external/hgnc/hgnc_entries_indra-1.24.0.tsv`: the HGNC table (approved, previous and
+  alias symbols) as distributed in the INDRA 1.24.0 Python package. To obtain it, download the
+  wheel (`pip download --no-deps indra==1.24.0`) and extract `indra/resources/hgnc_entries.tsv`
+  (<https://pypi.org/project/indra/1.24.0/>). It is a snapshot taken by that package release, not
+  necessarily the current HGNC data. Used only by `tier4_symbol_sensitivity.py`.
 
 ## Pharmacogenomics — GDSC
 

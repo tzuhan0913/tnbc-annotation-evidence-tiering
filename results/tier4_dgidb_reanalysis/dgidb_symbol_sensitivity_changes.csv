@@ -1,0 +1,51 @@
+gene_list,recorded_symbol,current_symbol,matched_by,in_dgidb_after_mapping
+original 869-gene cell-level list,3-Sep,SEPTIN3,previous symbol,True
+original 869-gene cell-level list,4-Sep,SEPTIN4,previous symbol,False
+original 869-gene cell-level list,AC012360.1,TGFBRAP1-AS1,alias,False
+original 869-gene cell-level list,AL161431.1,LINC03061,alias,False
+original 869-gene cell-level list,AL354696.2,KBTBD6-DT,alias,False
+original 869-gene cell-level list,ARSE,ARSL,previous symbol,True
+original 869-gene cell-level list,C17orf53,HROB,previous symbol,False
+original 869-gene cell-level list,C1orf112,FIRRM,previous symbol,False
+original 869-gene cell-level list,C1orf194,CFAP276,previous symbol,False
+original 869-gene cell-level list,C2orf40,ECRG4,previous symbol,False
+original 869-gene cell-level list,C9orf24,SPMIP6,previous symbol,False
+original 869-gene cell-level list,FAM166B,CIMIP2B,previous symbol,False
+original 869-gene cell-level list,FAM19A3,TAFA3,previous symbol,False
+original 869-gene cell-level list,FAM57B,TLCD3B,previous symbol,False
+original 869-gene cell-level list,HIST1H1A,H1-1,previous symbol,True
+original 869-gene cell-level list,HIST1H2AJ,H2AC14,previous symbol,False
+original 869-gene cell-level list,HIST1H2BM,H2BC14,previous symbol,False
+original 869-gene cell-level list,HIST1H3B,H3C2,previous symbol,True
+original 869-gene cell-level list,HIST1H4C,H4C3,previous symbol,False
+original 869-gene cell-level list,KIAA1257,CFAP92,previous symbol,False
+original 869-gene cell-level list,LRRC6,DNAAF11,previous symbol,False
+original 869-gene cell-level list,MRVI1-AS1,IRAG1-AS1,previous symbol,False
+original 869-gene cell-level list,RPL34-AS1,RPL34-DT,previous symbol,False
+original 869-gene cell-level list,SOGA1,MTCL2,previous symbol,False
+original 869-gene cell-level list,WISP3,CCN6,previous symbol,False
+original 869-gene cell-level list,ZNF582-AS1,ZNF582-DT,previous symbol,False
+830-gene patient-level list,AL161431.1,LINC03061,alias,False
+830-gene patient-level list,C5orf66-AS1,EPIST,previous symbol,False
+830-gene patient-level list,CXorf40B,EOLA2,previous symbol,False
+830-gene patient-level list,EPRS,EPRS1,previous symbol,True
+830-gene patient-level list,FAM189A2,ENTREP1,previous symbol,False
+830-gene patient-level list,FAM198B,GASK1B,previous symbol,False
+830-gene patient-level list,FAM214A,ATOSA,previous symbol,False
+830-gene patient-level list,GARS,GARS1,previous symbol,True
+830-gene patient-level list,H2AFV,H2AZ2,previous symbol,False
+830-gene patient-level list,H2AFZ,H2AZ1,previous symbol,True
+830-gene patient-level list,HIST1H1A,H1-1,previous symbol,True
+830-gene patient-level list,HIST1H2AG,H2AC11,previous symbol,False
+830-gene patient-level list,HIST1H2BF,H2BC7,previous symbol,False
+830-gene patient-level list,HIST1H2BJ,H2BC11,previous symbol,False
+830-gene patient-level list,HIST1H3G,H3C8,previous symbol,False
+830-gene patient-level list,HIST1H3H,H3C10,previous symbol,False
+830-gene patient-level list,HIST1H4C,H4C3,previous symbol,False
+830-gene patient-level list,HIST3H2A,H2AC25,previous symbol,True
+830-gene patient-level list,HSPB11,IFT25,previous symbol,False
+830-gene patient-level list,LINC00461,MIR9-2HG,previous symbol,False
+830-gene patient-level list,MARCH3,MARCHF3,previous symbol,False
+830-gene patient-level list,RARRES3,PLAAT4,previous symbol,False
+830-gene patient-level list,ST5,DENND2B,previous symbol,False
+830-gene patient-level list,TSTA3,GFUS,previous symbol,False
